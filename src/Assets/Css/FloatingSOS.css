@@ -1,0 +1,533 @@
+/* Floating SOS Button */
+.floating-sos-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: grab;
+  z-index: 1000;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 2s infinite;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  touch-action: none;
+}
+
+.floating-sos-btn:hover:not(.dragging) {
+  transform: scale(1.1);
+  background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
+}
+
+.floating-sos-btn:active:not(.dragging) {
+  transform: scale(0.95);
+}
+
+.floating-sos-btn.dragging {
+  cursor: grabbing;
+  transform: scale(1.1);
+  box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4);
+  animation: none; /* Disable pulse while dragging */
+  z-index: 1001; /* Higher z-index while dragging */
+}
+
+.floating-sos-btn.dragging:hover {
+  transform: scale(1.1); /* Maintain scale while dragging */
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* SOS Popup Overlay */
+.sos-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+}
+
+/* SOS Popup */
+.sos-popup {
+  background: white;
+  border-radius: 16px;
+  max-width: 400px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: popupSlideIn 0.3s ease-out;
+}
+
+@keyframes popupSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Popup Header */
+.sos-popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 20px 0 20px;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 20px;
+}
+
+.sos-popup-header h2 {
+  margin: 0;
+  color: #dc2626;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+/* Popup Content */
+.sos-popup-content {
+  padding: 0 20px 20px 20px;
+}
+
+.sos-warning {
+  color: #374151;
+  margin-bottom: 20px;
+  padding: 12px;
+  background: #fef3c7;
+  border: 1px solid #f59e0b;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Popup Actions */
+.sos-popup-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.btn-emergency-popup {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  color: white;
+  border: none;
+  padding: 16px 24px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-emergency-popup:hover:not(:disabled) {
+  background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
+  transform: translateY(-1px);
+}
+
+.btn-emergency-popup:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-cancel {
+  background: transparent;
+  color: #6b7280;
+  border: 1px solid #d1d5db;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-cancel:hover:not(:disabled) {
+  background: #f9fafb;
+  border-color: #9ca3af;
+  color: #374151;
+}
+
+.btn-cancel:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Result Display */
+.sos-result {
+  text-align: center;
+}
+
+.result-message {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.result-message.success {
+  background: #f0fdf4;
+  border: 1px solid #22c55e;
+  color: #166534;
+}
+
+.result-message.error {
+  background: #fef2f2;
+  border: 1px solid #ef4444;
+  color: #991b1b;
+}
+
+.result-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.result-text {
+  text-align: left;
+  flex: 1;
+}
+
+.result-text strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.result-text p {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* Email Results */
+.email-results {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.email-results h4 {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  color: #374151;
+}
+
+.email-result {
+  padding: 8px 12px;
+  margin: 4px 0;
+  border-radius: 6px;
+  font-size: 12px;
+  border: 1px solid;
+}
+
+.email-result.success {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+  color: #166534;
+}
+
+.email-result.error {
+  background: #fef2f2;
+  border-color: #fecaca;
+  color: #dc2626;
+}
+
+.error-detail {
+  font-size: 11px;
+  margin-top: 2px;
+  opacity: 0.8;
+}
+
+.btn-close {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-close:hover {
+  background: var(--primary-600);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .floating-sos-btn {
+    width: 55px;
+    height: 55px;
+    font-size: 22px;
+    /* Enhanced touch target for mobile */
+    min-width: 44px;
+    min-height: 44px;
+  }
+  
+  .floating-sos-btn.dragging {
+    transform: scale(1.15); /* Slightly larger on mobile when dragging */
+  }
+  
+  .sos-popup {
+    margin: 10px;
+    max-width: calc(100vw - 20px);
+  }
+  
+  .sos-popup-header {
+    padding: 15px 15px 0 15px;
+  }
+  
+  .sos-popup-content {
+    padding: 0 15px 15px 15px;
+  }
+  
+  .btn-emergency-popup {
+    padding: 14px 20px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .floating-sos-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+  
+  .floating-sos-btn.dragging {
+    transform: scale(1.2); /* Even more prominent on small screens */
+  }
+}
+
+/* Prevent text selection during drag */
+.floating-sos-btn * {
+  pointer-events: none;
+}
+
+/* Smooth transitions for position changes */
+.floating-sos-btn:not(.dragging) {
+  transition: bottom 0.3s ease, right 0.3s ease, transform 0.2s ease;
+}
+
+/* Visual feedback for draggable state */
+.floating-sos-btn::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(220, 38, 38, 0.3), rgba(185, 28, 28, 0.3));
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: -1;
+}
+
+.floating-sos-btn.dragging::before {
+  opacity: 1;
+}
+/* Loadin
+g Contacts */
+.loading-contacts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+  color: #6b7280;
+}
+
+.loading-contacts p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* No Contacts Message */
+.no-contacts-message {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.warning-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.no-contacts-message h3 {
+  margin: 0 0 12px 0;
+  color: #dc2626;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.no-contacts-message p {
+  margin: 0 0 20px 0;
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Setup Contacts Button */
+.btn-setup-contacts {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 14px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-setup-contacts:hover {
+  background: var(--primary-600);
+  transform: translateY(-1px);
+}
+
+/* Contacts Preview */
+.contacts-preview {
+  margin: 16px 0;
+  padding: 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+.contacts-preview h4 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  color: #374151;
+  font-weight: 600;
+}
+
+.contacts-preview ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contacts-preview li {
+  padding: 4px 0;
+  font-size: 13px;
+  color: #6b7280;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.contacts-preview li:last-child {
+  border-bottom: none;
+}
+
+/* Contact Error Actions */
+.contact-error-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+/* Enhanced Warning Message */
+.sos-warning strong {
+  color: #dc2626;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .no-contacts-message {
+    padding: 15px 0;
+  }
+  
+  .warning-icon {
+    font-size: 40px;
+    margin-bottom: 12px;
+  }
+  
+  .no-contacts-message h3 {
+    font-size: 16px;
+  }
+  
+  .contacts-preview {
+    margin: 12px 0;
+    padding: 10px;
+  }
+  
+  .contacts-preview h4 {
+    font-size: 13px;
+  }
+  
+  .contacts-preview li {
+    font-size: 12px;
+  }
+}

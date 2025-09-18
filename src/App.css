@@ -1,0 +1,226 @@
+/* Moved styles: consider importing from src/styles/app.css */
+:root {
+  --bg: #f7f9fc;
+  --text: #1d2433;
+  --muted: #6b7280;
+  --primary: #34caa1; /* soft green */
+  --primary-600: #2aa388; /* deeper green */
+  --secondary: #2fb08f; /* accent green */
+  --accent: #a7f3d0; /* pale mint */
+  --card: #ffffff;
+  --border: #e5e7eb;
+  --shadow: 0 10px 30px rgba(17, 24, 39, 0.08);
+}
+
+* { box-sizing: border-box; }
+
+/* Pleasant, theme-matching background */
+body {
+  background:
+    radial-gradient(1200px 600px at -10% -10%, #ecfdf5 0%, rgba(236,253,245,0) 60%),
+    radial-gradient(900px 500px at 110% -20%, #f0fff9 0%, rgba(240,255,249,0) 55%),
+    linear-gradient(180deg, #ffffff 0%, #f7f9fc 100%);
+  color: var(--text);
+  font-size: 16px; /* Base font size for better mobile readability */
+  line-height: 1.6; /* Better line height for readability */
+}
+
+/* Avoid horizontal scrollbars on small screens */
+html, body { 
+  width: 100%; 
+  overflow-x: hidden; 
+}
+
+/* Add padding to body to account for fixed navbar on mobile only */
+@media (max-width: 719px) {
+  body {
+    padding-top: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding-top: 70px;
+  }
+}
+
+/* Mobile font size improvements for better readability */
+@media (max-width: 768px) {
+  /* General text improvements */
+  body {
+    font-size: 18px; /* Larger base font size on mobile */
+  }
+  
+  /* Headings */
+  h1 {
+    font-size: 32px !important;
+    line-height: 1.2;
+  }
+  
+  h2 {
+    font-size: 28px !important;
+    line-height: 1.3;
+  }
+  
+  h3 {
+    font-size: 24px !important;
+    line-height: 1.3;
+  }
+  
+  h4 {
+    font-size: 20px !important;
+    line-height: 1.4;
+  }
+  
+  /* Paragraphs and general text */
+  p {
+    font-size: 16px !important;
+    line-height: 1.6;
+  }
+  
+  /* Buttons */
+  .btn {
+    font-size: 16px !important;
+    padding: 12px 20px !important;
+  }
+  
+  .btn-lg {
+    font-size: 18px !important;
+    padding: 16px 24px !important;
+  }
+  
+  /* Form elements */
+  input, textarea, select {
+    font-size: 16px !important; /* Prevents zoom on iOS */
+    padding: 14px 16px !important;
+  }
+  
+  /* Labels */
+  label {
+    font-size: 16px !important;
+  }
+  
+  /* Navigation and links */
+  a {
+    font-size: 16px !important;
+  }
+  
+  /* Small text */
+  small, .text-sm {
+    font-size: 14px !important;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  body {
+    font-size: 16px; /* Slightly smaller but still readable */
+  }
+  
+  h1 {
+    font-size: 28px !important;
+  }
+  
+  h2 {
+    font-size: 24px !important;
+  }
+  
+  h3 {
+    font-size: 20px !important;
+  }
+  
+  .btn {
+    font-size: 15px !important;
+    padding: 10px 18px !important;
+  }
+  
+  .btn-lg {
+    font-size: 16px !important;
+    padding: 14px 20px !important;
+  }
+}
+
+/* Soft aurora blobs behind content */
+.App::before,
+.App::after {
+  content: "";
+  position: fixed;
+  inset: -20% -20% auto auto;
+  z-index: -1;
+  width: 55vmax;
+  height: 55vmax;
+  background: radial-gradient(circle at 30% 30%, rgba(47,176,143,0.14), rgba(47,176,143,0) 60%),
+              radial-gradient(circle at 70% 70%, rgba(167,243,208,0.18), rgba(167,243,208,0) 60%);
+  filter: blur(40px) saturate(120%);
+  transform: translate3d(0,0,0);
+  pointer-events: none;
+}
+.App::after {
+  inset: auto auto -25% -20%;
+  background: radial-gradient(circle at 40% 40%, rgba(79,209,170,0.16), rgba(79,209,170,0) 60%),
+              radial-gradient(circle at 60% 60%, rgba(167,243,208,0.12), rgba(167,243,208,0) 60%);
+}
+
+.App { font-family: 'Inter', 'Nunito Sans', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; }
+
+/* Ensure footer sits at the bottom when content is short */
+.App { min-height: 100vh; display: flex; flex-direction: column; }
+.App > .footer { margin-top: auto; }
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+@media (max-width: 480px) {
+  .container { padding: 0 12px; }
+  .btn-lg { padding: 14px 20px; font-size: 18px; }
+}
+
+/* Navbar styles moved to src/Assets/Css/Navbar.css */
+
+/* Buttons */
+.btn { border: 0; border-radius: 12px; padding: 10px 16px; font-weight: 700; cursor: pointer; }
+.btn-lg { padding: 16px 26px; font-size: 20px; }
+.btn-primary { background: var(--primary); color: white; }
+.btn-primary:hover { background: var(--primary-600); }
+.cta-pulse { position: relative; overflow: visible; }
+.cta-pulse::before, .cta-pulse::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  border-radius: 14px;
+  border: 2px solid var(--primary);
+  opacity: 0.0;
+  pointer-events: none;
+}
+.cta-pulse::before { animation: ringPulse 2.2s ease-out infinite; }
+.cta-pulse::after { animation: ringPulse 2.2s ease-out 1.1s infinite; }
+
+@keyframes ringPulse {
+  0% { opacity: 0.0; transform: translate(-50%, -50%) scale(0.95); }
+  10% { opacity: 0.45; }
+  60% { opacity: 0.15; }
+  100% { opacity: 0.0; transform: translate(-50%, -50%) scale(1.6); }
+}
+.btn-secondary { background: var(--accent); color: white; }
+.btn-ghost { background: transparent; color: var(--primary-600); border: 1px solid var(--border); }
+.btn-ghost:hover { background: #f8fafc; }
+
+/* Home page styles moved to src/Assets/Css/Home.css */
+
+/* Footer styles moved to src/Assets/Css/Footer.css */
+
+/* Home responsive rules moved to src/Assets/Css/Home.css */
+
+/* Auth page styles moved to src/Assets/Css/SignIn.css and src/Assets/Css/SignUp.css */
+
+/* Main page styles moved to src/Assets/Css/Main.css */
+
+/* Mood and Chat styles moved to Assets: see src/Assets/Css/Moods.css and src/Assets/Css/Chatbot.css */
+/* Medicines: moved to src/Assets/Css/Medicine.css */

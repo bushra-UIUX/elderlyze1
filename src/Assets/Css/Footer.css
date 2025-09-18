@@ -1,0 +1,39 @@
+.footer { position: relative; border-top: 1px solid var(--border); background: var(--card); overflow: hidden; }
+.footer-backdrop { position: absolute; inset: -20% -10% auto -10%; height: 220px; background:
+  radial-gradient(500px 180px at 10% -40%, rgba(52,202,161,0.12), rgba(52,202,161,0) 60%),
+  radial-gradient(500px 180px at 90% 140%, rgba(47,176,143,0.12), rgba(47,176,143,0) 60%);
+  filter: blur(30px) saturate(120%);
+  pointer-events: none;
+}
+.footer-content { display: grid; grid-template-columns: 1fr; gap: 16px; padding: 28px 0; text-align: left; align-items: start; position: relative; }
+.footer .brand { font-weight: 800; color: var(--primary-600); font-size: 20px; }
+.footer-tag { margin: 6px 0 10px; color: #475569; }
+.social { display: flex; gap: 10px; margin-top: 8px; flex-wrap: wrap; }
+.social-btn { width: 32px; height: 32px; display: grid; place-items: center; border-radius: 8px; background: #ecfdf5; color: var(--primary-600); border: 1px solid rgba(52,202,161,0.25); box-shadow: var(--shadow); }
+.social-btn:hover { background: #d1fae5; color: var(--primary-600); border-color: rgba(42,163,136,0.35); }
+.footer-links { display: grid; gap: 8px; }
+.footer-heading { font-weight: 800; color: var(--text); margin-bottom: 2px; }
+.footer-links a { color: var(--muted); text-decoration: none; }
+.footer-links a:hover { color: var(--primary-600); }
+.footer-news { display: grid; gap: 8px; }
+.footer-news .muted { color: var(--muted); }
+.news-form { display: grid; grid-template-columns: 1fr auto; gap: 8px; }
+.news-form .input-with-icon { position: relative; }
+.news-form input { width: 100%; padding: 10px 36px 10px 12px; border: 1px solid var(--border); border-radius: 10px; background: #fff; }
+.news-form .mail { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: var(--muted); }
+.copyright { text-align: center; color: var(--muted); font-size: 14px; padding: 10px 0 20px; border-top: 1px solid var(--border); background: rgba(236,253,245,0.6); }
+
+/* Footer responsiveness */
+@media (max-width: 479px) {
+  .footer-content { text-align: center; place-items: center; }
+  .footer-links, .footer-news { width: 100%; max-width: 420px; }
+}
+
+@media (min-width: 480px) and (max-width: 719px) {
+  .footer-content { grid-template-columns: 1fr 1fr; text-align: left; }
+}
+
+@media (min-width: 720px) {
+  .footer-content { grid-template-columns: 1.2fr 0.6fr 0.8fr; }
+}
+

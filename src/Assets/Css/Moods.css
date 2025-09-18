@@ -1,0 +1,26 @@
+.mood { padding: 48px 0; }
+.mood .container { max-width: 680px; }
+.mood-title { margin: 0 0 6px; font-size: 28px; }
+.mood-sub { color: var(--muted); margin: 0 0 16px; }
+.emoji-board { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 56px)); gap: 12px; justify-content: center; }
+.emoji-btn { width: 56px; height: 56px; border-radius: 12px; border: 1px solid var(--border); background: #fff; font-size: 26px; box-shadow: var(--shadow); cursor: pointer; transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease; }
+.emoji-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(17,24,39,.1); }
+.emoji-btn.selected { border-color: rgba(68,103,242,.5); box-shadow: 0 0 0 3px rgba(68,103,242,.2); }
+.mood-prompt { margin-top: 16px; background: #ffffff; border: 1px solid var(--border); border-radius: 12px; padding: 14px; box-shadow: var(--shadow); font-weight: 600; color: #334155; text-align: center; }
+.mood-actions { display: flex; gap: 10px; margin-top: 14px; justify-content: center; }
+
+.moods { padding: 48px 0; }
+.moods .container { max-width: 900px; }
+.moods-title { margin: 0 0 6px; font-size: 28px; }
+.moods-sub { color: var(--muted); margin: 0 0 16px; }
+.moods-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+.mood-card { display: grid; grid-auto-flow: row; justify-items: start; gap: 6px; padding: 14px; border-radius: 14px; background: #fff; border: 1px solid var(--border); text-align: left; cursor: pointer; box-shadow: var(--shadow); transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease; }
+.mood-card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(17,24,39,.1); }
+.mood-card.selected { border-color: rgba(68,103,242,.45); box-shadow: 0 0 0 3px rgba(68,103,242,.18); }
+.mood-card .emoji { font-size: 28px; }
+.mood-card .label { font-weight: 700; font-size: 16px; color: #0f172a; }
+.moods-suggestion { margin-top: 16px; background: #ffffff; border: 1px solid var(--border); border-radius: 12px; padding: 14px; box-shadow: var(--shadow); color: #334155; }
+.moods-suggestion .chip { display: inline-block; margin-right: 8px; background: #eef2ff; color: #1d3cff; border: 1px solid #e0e7ff; border-radius: 999px; padding: 4px 8px; font-weight: 700; font-size: 12px; }
+.moods-suggestion .text { font-weight: 600; }
+.moods-actions { display: flex; gap: 10px; margin-top: 14px; }
+
